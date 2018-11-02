@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { StreetsService } from '../../services/streets.service';
 
 @Component({
   selector: 'app-sidenav',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidenavComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private streetService: StreetsService
+  ) { }
 
   ngOnInit() {
+    setTimeout(
+      () => {
+        console.log(this.streetService.streetsArray);
+      }
+    );
+
   }
 
 }
