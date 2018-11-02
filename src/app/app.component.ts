@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {StreetsService} from './services/streets.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'geocod-front';
+
+  constructor(
+    private streetService: StreetsService
+  ) {
+    this.streetService.init();
+  }
 }

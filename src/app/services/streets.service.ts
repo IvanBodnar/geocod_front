@@ -10,17 +10,24 @@ export class StreetsService implements OnInit {
 
   constructor(
     private dataService: DataService
-  ) {
+  ) {}
+
+  init() {
     this.dataService.getStreets()
       .subscribe(
         data => {
           this.streetsArray = data;
+          // console.log('streetService: ', this.streetsArray);
         }
       );
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void { }
 
+  getFilteredStreets(filter: string): string[] {
+    const filtered = this.streetsArray.filter(  street => {
+      return street !== null ? street.includes(filter.toLowerCase()) : false;
+    });
+    return filtered.slice(0, 10);
   }
-
 }
