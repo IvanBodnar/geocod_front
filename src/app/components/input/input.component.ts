@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {StreetsService} from '../../services/streets.service';
 
 @Component({
   selector: 'app-input',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InputComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private streetsService: StreetsService
+  ) { }
 
   ngOnInit() {
   }
 
+  onInput(event: any): void {
+    const filter = this.streetsService.getFilteredStreets(event.target.value);
+    console.log(filter);
+  }
 }

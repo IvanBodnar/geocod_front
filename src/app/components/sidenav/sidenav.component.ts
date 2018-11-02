@@ -12,13 +12,6 @@ export class SidenavComponent implements OnInit {
     private streetService: StreetsService
   ) { }
 
-  ngOnInit() {
-    setTimeout(
-      () => {
-        console.log(this.streetService.streetsArray);
-      }
-    );
-
-  }
+  ngOnInit() { }
 
 }
