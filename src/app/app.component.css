@@ -1,1 +1,9 @@
 
+.ui.grid {
+  margin: 0;
+  height: 100%;
+}
+
+.ui.grid .column {
+  padding: 0;
+}
