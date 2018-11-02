@@ -6,12 +6,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MapComponent } from './components/map/map.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
+import { InputComponent } from './components/input/input.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MapComponent,
-    SidenavComponent
+    SidenavComponent,
+    InputComponent
   ],
   imports: [
     BrowserModule,
