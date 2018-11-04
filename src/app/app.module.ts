@@ -8,13 +8,15 @@ import { AppComponent } from './app.component';
 import { MapComponent } from './components/map/map.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { InputComponent } from './components/input/input.component';
+import { FormComponent } from './components/form/form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MapComponent,
     SidenavComponent,
-    InputComponent
+    InputComponent,
+    FormComponent
   ],
   imports: [
     BrowserModule,
