@@ -1,18 +1,19 @@
 
 <div class="ui labeled input">
   <div class="ui label">
-    Calle 1
+    Calle {{ id }}
   </div>
   <input
+    [id]="id"
     (input)="onInput($event)"
     type="text"
-    placeholder="Ingrese Calle..."
-    list="streets-list"
+    placeholder="Calle {{ id }}"
+    [attr.list]="'datalist-' + id"
     autocomplete="off"
   >
 </div>
 
-<datalist id="streets-list">
+<datalist [id]="'datalist-' + id">
   <option *ngFor="let street of datalistOptions" value="{{ street }}">
 </datalist>
 
