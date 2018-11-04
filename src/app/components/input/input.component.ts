@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 import {StreetsService} from '../../services/streets.service';
 
@@ -8,6 +8,7 @@ import {StreetsService} from '../../services/streets.service';
   styleUrls: ['./input.component.css']
 })
 export class InputComponent implements OnInit {
+  @Input() id: number;
   datalistOptions: string[];
 
   constructor(
