@@ -1,5 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {map} from 'rxjs/operators';
+import {Component, OnInit} from '@angular/core';
 
 import {StreetsService} from '../../services/streets.service';
 
@@ -15,8 +14,7 @@ export class InputComponent implements OnInit {
     private streetsService: StreetsService
   ) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   onInput(event: Event): void {
     const filteredStreetsObservable = this.streetsService.getFilteredStreets( (<HTMLInputElement>event.target).value );
