@@ -8,6 +8,11 @@ import {Observable, of} from 'rxjs';
 export class StreetsService implements OnInit {
   streetsArray: string[];
 
+  _cleanString(string: string): string {
+    const termsArray = string.toLowerCase().replace(',', '').split(' ');
+    return termsArray.join('');
+  }
+
   constructor(
     private dataService: DataService
   ) {}
@@ -24,10 +29,12 @@ export class StreetsService implements OnInit {
 
   ngOnInit(): void { }
 
-  getFilteredStreets(filter: string): string[] {
+  getFilteredStreets(filter: string): Observable<string[]> {
     const filtered = this.streetsArray.filter(  street => {
-      return street !== null ? street.includes(filter.toLowerCase()) : false;
+      return street !== null ? this._cleanString(street).includes(this._cleanString(filter)) : false;
     });
-    return filtered.slice(0, 10);
+    return of(filtered.slice(0, 10));
   }
+
+
 }
