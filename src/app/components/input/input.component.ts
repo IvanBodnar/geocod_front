@@ -1,4 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {map} from 'rxjs/operators';
+
 import {StreetsService} from '../../services/streets.service';
 
 @Component({
@@ -7,6 +9,7 @@ import {StreetsService} from '../../services/streets.service';
   styleUrls: ['./input.component.css']
 })
 export class InputComponent implements OnInit {
+  datalistOptions: string[];
 
   constructor(
     private streetsService: StreetsService
@@ -15,8 +18,12 @@ export class InputComponent implements OnInit {
   ngOnInit() {
   }
 
-  onInput(event: any): void {
-    const filter = this.streetsService.getFilteredStreets(event.target.value);
-    console.log(filter);
+  onInput(event: Event): void {
+    const filteredStreetsObservable = this.streetsService.getFilteredStreets( (<HTMLInputElement>event.target).value );
+    filteredStreetsObservable
+      .subscribe(
+        filteredStreets => this.datalistOptions = filteredStreets,
+        error => console.log(error)
+      );
   }
 }
