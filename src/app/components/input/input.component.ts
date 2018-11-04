@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 
 import {StreetsService} from '../../services/streets.service';
+import {FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-input',
@@ -9,6 +10,7 @@ import {StreetsService} from '../../services/streets.service';
 })
 export class InputComponent implements OnInit {
   @Input() id: number;
+  @Input() parent: FormGroup;
   datalistOptions: string[];
 
   constructor(
