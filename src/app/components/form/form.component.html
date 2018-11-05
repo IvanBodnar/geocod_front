@@ -1,10 +1,10 @@
 
-<form class="ui form" [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup.controls)" method="get" >
+<form class="ui form" [formGroup]="streetsForm" (ngSubmit)="onSubmit(streetsForm)" method="get" >
   <div class="field">
-    <app-input [parent]="formGroup" id="1"></app-input>
+    <app-input [parent]="streetsForm" id="1"></app-input>
   </div>
   <div class="field">
-    <app-input [parent]="formGroup" id="2"></app-input>
+    <app-input [parent]="streetsForm" id="2"></app-input>
   </div>
   <button class="ui primary button" >Send</button>
 </form>
