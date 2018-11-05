@@ -17,7 +17,7 @@ export class MapComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    const map = L.map('map').setView([-34.612443, -58.447531], 13);
+    const map = L.map('map').setView([-34.612443, -58.447531], 12);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -26,7 +26,9 @@ export class MapComponent implements OnInit {
     this.mapService.updateMarker
       .subscribe(
         (point: IntersectionPoint) => {
-          L.marker(point.getLatLong()).addTo(map);
+          const coords = point.getLatLong();
+          L.marker(coords).addTo(map);
+          map.flyTo(coords, 15);
         },
         error => console.log(error)
       );
