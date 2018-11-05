@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import { Observable } from 'rxjs';
-import IntersectionModel from '../models/intersection.model';
+import {IntersectionPoint, IntersectionResponse, StreetsToIntersectModel} from '../models/intersection.model';
 
 @Injectable({
   providedIn: 'root'
@@ -15,9 +15,9 @@ export class DataService {
     return this.http.get<string[]>(this.url + 'streets');
   }
 
-  getIntersection(intersection: IntersectionModel): Observable<IntersectionModel> {
+  getIntersection(intersection: StreetsToIntersectModel): Observable<IntersectionResponse> {
     const params = new HttpParams().set('street1', intersection.street1).set('street2', intersection.street2);
-    return this.http.get<IntersectionModel>(this.url + 'intersection', {params: params});
+    return this.http.get<IntersectionResponse>(this.url + 'intersection', {params: params});
   }
 
 }
