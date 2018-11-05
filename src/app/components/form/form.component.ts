@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup } from '@angular/forms';
 import {StreetsService} from '../../services/streets.service';
 import {DataService} from '../../services/data.service';
-import IntersectionModel from '../../models/intersection.model';
+import { StreetsToIntersectModel } from '../../models/intersection.model';
+import {MapService} from '../../services/map.service';
 
 @Component({
   selector: 'app-form',
@@ -18,18 +19,15 @@ export class FormComponent implements OnInit {
 
   constructor(
     private streetsService: StreetsService,
-    private dataService: DataService
+    private dataService: DataService,
+    private mapService: MapService
   ) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   onSubmit(form: FormGroup) {
-    const intersection = new IntersectionModel(form.controls.calle1.value, form.controls.calle2.value);
-    this.dataService.getIntersection(intersection)
-      .subscribe(
-        result => console.log(result)
-      )
+    const streetsToIntersect = new StreetsToIntersectModel(form.controls.calle1.value, form.controls.calle2.value);
+    this.mapService.getStreetsToIntersect(streetsToIntersect);
   }
 
 }
