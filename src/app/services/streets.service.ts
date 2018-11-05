@@ -22,7 +22,6 @@ export class StreetsService implements OnInit {
       .subscribe(
         data => {
           this.streetsArray = data;
-          // console.log('streetService: ', this.streetsArray);
         }
       );
   }
