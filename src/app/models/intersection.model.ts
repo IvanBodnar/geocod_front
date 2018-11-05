@@ -1,5 +1,5 @@
 
-interface LatLong {
+export interface LatLong {
   lat: string;
   lng: string;
 }
