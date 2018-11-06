@@ -9,6 +9,7 @@ import { MapComponent } from './components/map/map.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { InputComponent } from './components/input/input.component';
 import { FormComponent } from './components/form/form.component';
+import { MessageComponent } from './components/message/message.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { FormComponent } from './components/form/form.component';
     MapComponent,
     SidenavComponent,
     InputComponent,
-    FormComponent
+    FormComponent,
+    MessageComponent
   ],
   imports: [
     BrowserModule,
