@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {HttpErrorResponse} from '@angular/common/http';
 import {MapService} from '../../services/map.service';
 
-declare const $;
 
 @Component({
   selector: 'app-message',
