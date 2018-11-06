@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {HttpErrorResponse} from '@angular/common/http';
+import {MapService} from '../../services/map.service';
+
 
 @Component({
   selector: 'app-message',
@@ -9,15 +12,28 @@ export class MessageComponent implements OnInit {
   msgClasses = {
     ui: true,
     message: true,
-    hidden: false,
-    negative: true
+    hidden: true
   };
   header: string;
   body: string;
 
-  constructor() { }
+  constructor(
+    private mapService: MapService
+  ) {  }
 
   ngOnInit() {
+    this.mapService.showMapError
+      .subscribe(
+        error => this.showErrorMessage(error)
+      );
+  }
+
+  showErrorMessage(error: HttpErrorResponse): void {
+    Object.assign(this.msgClasses, { negative: true });
+    this.msgClasses.hidden = false;
+    this.header = 'Error';
+    this.body = error.error.error;
+    console.log(this);
   }
 
 }
