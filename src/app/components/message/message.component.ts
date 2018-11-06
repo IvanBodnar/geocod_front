@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {HttpErrorResponse} from '@angular/common/http';
 import {MapService} from '../../services/map.service';
 
+declare const $;
 
 @Component({
   selector: 'app-message',
@@ -12,7 +13,9 @@ export class MessageComponent implements OnInit {
   msgClasses = {
     ui: true,
     message: true,
-    hidden: true
+    hide: true,
+    show: false,
+    remove: false
   };
   header: string;
   body: string;
@@ -30,10 +33,24 @@ export class MessageComponent implements OnInit {
 
   showErrorMessage(error: HttpErrorResponse): void {
     Object.assign(this.msgClasses, { negative: true });
-    this.msgClasses.hidden = false;
+    this.msgClasses.remove = false;
+    this.msgClasses.hide = false;
+    this.msgClasses.show = true;
     this.header = 'Error';
     this.body = error.error.error;
-    console.log(this);
+
+    setTimeout(() => {
+      this.closeMessage();
+    }, 3000);
+  }
+
+  closeMessage() {
+    this.msgClasses.hide = true;
+    this.msgClasses.show = false;
+
+    setTimeout(() => {
+      this.msgClasses.remove = true;
+    }, 1000);
   }
 
 }

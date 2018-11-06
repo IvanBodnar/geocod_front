@@ -1,6 +1,6 @@
 
 <div [ngClass]="msgClasses">
-  <i class="close icon"></i>
+  <i (click)="closeMessage()" class="close icon"></i>
   <div class="header">
     {{ header }}
   </div>
