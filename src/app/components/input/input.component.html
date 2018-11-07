@@ -4,7 +4,7 @@
     Calle {{ id }}
   </label>
   <input
-    [formControlName]="'calle' + id"
+    [formControlName]="controlName"
     [id]="id"
     (input)="onInput($event)"
     type="text"
@@ -14,7 +14,7 @@
     autocomplete="off"
   >
   <div class="ui label">
-    <i class="fitted x link red icon"></i>
+    <i (click)="clearInput()" class="fitted x link red icon"></i>
   </div>
 </div>
 

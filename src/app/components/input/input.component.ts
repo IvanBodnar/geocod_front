@@ -11,13 +11,16 @@ import {FormGroup} from '@angular/forms';
 export class InputComponent implements OnInit {
   @Input() id: number;
   @Input() parent: FormGroup;
+  controlName: string;
   datalistOptions: string[];
 
   constructor(
     private streetsService: StreetsService
   ) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.controlName = 'calle' + this.id;
+  }
 
   onInput(event: Event): void {
     const filteredStreetsObservable = this.streetsService.getFilteredStreets( (<HTMLInputElement>event.target).value );
@@ -26,5 +29,9 @@ export class InputComponent implements OnInit {
         filteredStreets => this.datalistOptions = filteredStreets,
         error => console.log(error)
       );
+  }
+
+  clearInput() {
+    this.parent.controls[this.controlName].setValue(null);
   }
 }
