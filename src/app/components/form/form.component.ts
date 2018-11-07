@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup } from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {StreetsService} from '../../services/streets.service';
 import {DataService} from '../../services/data.service';
 import { StreetsToIntersectModel } from '../../models/intersection.model';
@@ -13,8 +13,8 @@ import {MapService} from '../../services/map.service';
 export class FormComponent implements OnInit {
 
   streetsForm = new FormGroup({
-    calle1: new FormControl(),
-    calle2: new FormControl()
+    calle1: new FormControl(undefined, [Validators.required]),
+    calle2: new FormControl(undefined, [Validators.required])
   });
 
   constructor(
