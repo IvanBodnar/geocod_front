@@ -12,6 +12,7 @@ declare const L;
 })
 export class MapComponent implements OnInit {
   layer: any;
+  mb = 'pk.eyJ1IjoiaXZhbmdib2RuYXIiLCJhIjoiY2pvNm16ZDQ1MG1yMzN2cGEyMHV1bjl1YSJ9.LOfRdnXTDUUmGIz2K4RltA';
 
   constructor(
     private mapService: MapService
@@ -20,8 +21,12 @@ export class MapComponent implements OnInit {
   ngOnInit() {
     const map = L.map('map', {zoomControl: false}).setView([-34.612443, -58.447531], 12);
 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors,' +
+        ' <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+      maxZoom: 18,
+      id: 'mapbox.high-contrast',
+      accessToken: this.mb
     }).addTo(map);
 
     this.mapService.updateMarker
