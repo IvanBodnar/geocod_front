@@ -11,13 +11,14 @@ declare const L;
   styleUrls: ['./map.component.css']
 })
 export class MapComponent implements OnInit {
+  layer: any;
 
   constructor(
     private mapService: MapService
   ) { }
 
   ngOnInit() {
-    const map = L.map('map').setView([-34.612443, -58.447531], 12);
+    const map = L.map('map', {zoomControl: false}).setView([-34.612443, -58.447531], 12);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -26,9 +27,10 @@ export class MapComponent implements OnInit {
     this.mapService.updateMarker
       .subscribe(
         (point: IntersectionPoint) => {
+          if (this.layer) { this.layer.remove(); }
           const coords = point.getLatLong();
-          L.marker(coords).addTo(map);
-          map.flyTo(coords, 15);
+          this.layer = L.marker(coords).addTo(map);
+          map.flyTo(coords, 17);
         },
         error => console.log(error)
       );
