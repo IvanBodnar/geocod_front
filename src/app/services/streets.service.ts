@@ -33,6 +33,11 @@ export class StreetsService implements OnInit {
     const filtered = this.streetsArray.filter(  street => {
       return street !== null ? StreetsService._cleanString(street).includes(filter) : false;
     });
+
+    // Fixed: close datalist when street is selected
+    if (filtered.length === 1 && StreetsService._cleanString(filtered[0]) === filter) {
+      return of([]);
+    }
     return of(
       filtered
         .slice(0, 10)
