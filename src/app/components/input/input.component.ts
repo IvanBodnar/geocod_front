@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 
 import {StreetsService} from '../../services/streets.service';
 import {FormGroup} from '@angular/forms';
+import {MapService} from '../../services/map.service';
 
 @Component({
   selector: 'app-input',
@@ -15,11 +16,16 @@ export class InputComponent implements OnInit {
   datalistOptions: string[];
 
   constructor(
-    private streetsService: StreetsService
+    private streetsService: StreetsService,
+    private mapService: MapService
   ) { }
 
   ngOnInit() {
     this.controlName = 'calle' + this.id;
+    this.mapService.updateMarker
+      .subscribe(
+        () => this.clearInput()
+      );
   }
 
   onInput(event: Event): void {
