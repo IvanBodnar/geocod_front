@@ -1,21 +1,24 @@
 
-<div class="ui labeled input">
-  <div class="ui label">
+<div class="ui fluid right labeled input" [formGroup]="parent">
+  <label class="ui label">
     Calle {{ id }}
-  </div>
-  <div [formGroup]="parent">
-    <input
-      [formControlName]="'calle' + id"
-      [id]="id"
-      (input)="onInput($event)"
-      type="text"
-      placeholder="Calle {{ id }}"
-      [attr.list]="'datalist-' + id"
-      name="input-{{ id }}"
-      autocomplete="off"
-    >
+  </label>
+  <input
+    [formControlName]="'calle' + id"
+    [id]="id"
+    (input)="onInput($event)"
+    type="text"
+    placeholder="Calle {{ id }}"
+    [attr.list]="'datalist-' + id"
+    name="input-{{ id }}"
+    autocomplete="off"
+  >
+  <div id="test" class="ui label">
+    <i class="fitted x link red icon"></i>
   </div>
 </div>
+
+
 
 <datalist [id]="'datalist-' + id">
   <option *ngFor="let street of datalistOptions" value="{{ street }}">
