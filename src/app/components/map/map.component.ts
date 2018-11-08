@@ -20,6 +20,16 @@ export class MapComponent implements OnInit {
 
   ngOnInit() {
     const map = L.map('map', {zoomControl: false}).setView([-34.612443, -58.447531], 12);
+    const icon = L.icon({
+      iconUrl:       'assets/images/marker-icon.png',
+      iconRetinaUrl: 'assets/images/marker-icon-2x.png',
+      shadowUrl:     'assets/images/marker-shadow.png',
+      iconSize:    [25, 41],
+      iconAnchor:  [12, 41],
+      popupAnchor: [1, -34],
+      tooltipAnchor: [16, -28],
+      shadowSize:  [41, 41]
+    });
 
     L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
       attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors,' +
@@ -34,7 +44,10 @@ export class MapComponent implements OnInit {
         (point: IntersectionPoint) => {
           if (this.layer) { this.layer.remove(); }
           const coords = point.getLatLong();
-          this.layer = L.marker(coords).addTo(map);
+          this.layer = L.marker(
+            coords,
+            { icon: icon }
+          ).addTo(map);
           map.flyTo(coords, 17);
         },
         error => console.log(error)
