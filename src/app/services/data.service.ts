@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
+import {environment} from '../../environments/environment';
+
 import { Observable } from 'rxjs';
 import { IntersectionResponse, StreetsToIntersectModel } from '../models/intersection.model';
 
@@ -7,7 +9,7 @@ import { IntersectionResponse, StreetsToIntersectModel } from '../models/interse
   providedIn: 'root'
 })
 export class DataService {
-  url = 'http://localhost:3000/';
+  url = environment.baseUrl;
 
   constructor( private http: HttpClient ) {  }
 
