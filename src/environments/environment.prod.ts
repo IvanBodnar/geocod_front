@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  baseUrl: 'https://www.geocodificador-caba.online/'
+  baseUrl: 'https://api.server-box.online/'
 };
