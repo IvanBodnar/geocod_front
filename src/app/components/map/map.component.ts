@@ -11,6 +11,7 @@ declare const L;
   styleUrls: ['./map.component.css']
 })
 export class MapComponent implements OnInit {
+  map: any;
   layer: any;
   mb = 'pk.eyJ1IjoiaXZhbmdib2RuYXIiLCJhIjoiY2pvNm16ZDQ1MG1yMzN2cGEyMHV1bjl1YSJ9.LOfRdnXTDUUmGIz2K4RltA';
 
@@ -19,7 +20,7 @@ export class MapComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    const map = L.map('map', {zoomControl: false}).setView([-34.612443, -58.447531], 12);
+    this.map = L.map('map', {zoomControl: false}).setView([-34.612443, -58.447531], 12);
     const icon = L.icon({
       iconUrl:       'assets/images/marker-icon.png',
       iconRetinaUrl: 'assets/images/marker-icon-2x.png',
@@ -37,7 +38,7 @@ export class MapComponent implements OnInit {
       maxZoom: 18,
       id: 'mapbox.high-contrast',
       accessToken: this.mb
-    }).addTo(map);
+    }).addTo(this.map);
 
     this.mapService.updateMarker
       .subscribe(
@@ -47,8 +48,8 @@ export class MapComponent implements OnInit {
           this.layer = L.marker(
             coords,
             { icon: icon }
-          ).addTo(map);
-          map.flyTo(coords, 17);
+          ).addTo(this.map);
+          this.map.flyTo(coords, 17);
         },
         error => console.log(error)
       );
