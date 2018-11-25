@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 import { MapService } from '../../services/map.service';
 import {IntersectionPoint} from '../../models/intersection.model';
@@ -20,7 +20,10 @@ export class MapComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.map = L.map('map', {zoomControl: false}).setView([-34.612443, -58.447531], 12);
+    const screenWidth = window.innerWidth;
+    const zoom = screenWidth <= 500 ? 11 : 12;
+
+    this.map = L.map('map', {zoomControl: false}).setView([-34.612443, -58.447531], zoom);
     const icon = L.icon({
       iconUrl:       'assets/images/marker-icon.png',
       iconRetinaUrl: 'assets/images/marker-icon-2x.png',
