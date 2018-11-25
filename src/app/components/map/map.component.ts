@@ -22,8 +22,9 @@ export class MapComponent implements OnInit {
   ngOnInit() {
     const screenWidth = window.innerWidth;
     const zoom = screenWidth <= 500 ? 11 : 12;
+    const coords = screenWidth <= 500 ? [-34.540188, -58.438869] : [-34.612443, -58.447531];
 
-    this.map = L.map('map', {zoomControl: false}).setView([-34.612443, -58.447531], zoom);
+    this.map = L.map('map', {zoomControl: false}).setView(coords, zoom);
     const icon = L.icon({
       iconUrl:       'assets/images/marker-icon.png',
       iconRetinaUrl: 'assets/images/marker-icon-2x.png',
